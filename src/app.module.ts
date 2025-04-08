@@ -7,6 +7,7 @@ import { User } from './user/entities/user.entity';
 import { Post } from './post/entities/post.entity';
 import { PostModule } from './post/post.module';
 import { AdviceModule } from './advice/advice.module';
+import { Advice } from "./advice/entities/advice.entity";
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { AdviceModule } from './advice/advice.module';
       password: 'xzy20000219',
       database: 'emotion_app',
       synchronize: true,
-      entities: [User, Post],
+      entities: [User, Post, Advice],
       logging: true,
       poolSize: 10,
       connectorPackage: 'mysql',

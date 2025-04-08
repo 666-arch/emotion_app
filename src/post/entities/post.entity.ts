@@ -3,10 +3,12 @@ import {
   CreateDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
+import { Advice } from '../../advice/entities/advice.entity';
 
 @Entity()
 export class Post {
@@ -16,6 +18,8 @@ export class Post {
   content: string;
   @ManyToOne(() => User, (user) => user.posts, { onDelete: 'CASCADE' })
   user: User;
+  @OneToMany(() => Post, (post) => post.user)
+  advice: Advice[];
   @CreateDateColumn()
   create_at: Date;
   @UpdateDateColumn()

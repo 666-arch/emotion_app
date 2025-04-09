@@ -22,4 +22,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
   },
+  // 或者直接关闭整个插件
+  overrides: []
 };

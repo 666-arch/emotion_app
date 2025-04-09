@@ -7,7 +7,9 @@ import { User } from './user/entities/user.entity';
 import { Post } from './post/entities/post.entity';
 import { PostModule } from './post/post.module';
 import { AdviceModule } from './advice/advice.module';
-import { Advice } from "./advice/entities/advice.entity";
+import { Advice } from './advice/entities/advice.entity';
+import { SmsVerifyCodeModule } from './sms-verify-code/sms-verify-code.module';
+import { SmsVerifyCode } from "./sms-verify-code/entities/sms-verify-code.entity";
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { Advice } from "./advice/entities/advice.entity";
       password: 'xzy20000219',
       database: 'emotion_app',
       synchronize: true,
-      entities: [User, Post, Advice],
+      entities: [User, Post, Advice, SmsVerifyCode],
       logging: true,
       poolSize: 10,
       connectorPackage: 'mysql',
@@ -30,6 +32,7 @@ import { Advice } from "./advice/entities/advice.entity";
     UserModule,
     PostModule,
     AdviceModule,
+    SmsVerifyCodeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -13,6 +13,8 @@ export class User {
   id: number;
   @Column({ length: 20, unique: true, comment: '手机号' })
   phone_number: string;
+  @Column({ length: 50, unique: true, comment: '邮箱地址'})
+  email_address: string;
   @Column({ length: 255, comment: '密码' })
   password: string; //加密存储
   @Column({ nullable: true, length: 50, comment: '昵称', default: '匿名' })

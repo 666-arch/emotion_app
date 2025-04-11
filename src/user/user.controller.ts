@@ -6,13 +6,16 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { ApiOperation } from "@nestjs/swagger";
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @ApiOperation({ summary: '用户注册', description: '用户注册' })
+  @Post('create')
   create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+    console.log('==================', createUserDto);
+    // return this.userService.create(createUserDto);
   }
 
   @Get()

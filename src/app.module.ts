@@ -10,6 +10,7 @@ import { AdviceModule } from './advice/advice.module';
 import { Advice } from './advice/entities/advice.entity';
 import { SmsVerifyCodeModule } from './sms-verify-code/sms-verify-code.module';
 import { SmsVerifyCode } from "./sms-verify-code/entities/sms-verify-code.entity";
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { SmsVerifyCode } from "./sms-verify-code/entities/sms-verify-code.entity
     PostModule,
     AdviceModule,
     SmsVerifyCodeModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

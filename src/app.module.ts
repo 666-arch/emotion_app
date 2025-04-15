@@ -20,7 +20,7 @@ import { EmailModule } from './email/email.module';
       port: 3306,
       username: 'root',
       password: 'xzy20000219',
-      database: 'emotion_app',
+      database: 'login_test',
       synchronize: true,
       entities: [User, Post, Advice, SmsVerifyCode],
       logging: true,

@@ -13,6 +13,8 @@ import { SmsVerifyCode } from "./sms-verify-code/entities/sms-verify-code.entity
 import { EmailModule } from './email/email.module';
 import { ConfigModule } from "@nestjs/config";
 import { WechatModule } from "./wechat/wechat.module";
+import { WxUserModule } from './wx-user/wx-user.module';
+import { WxUser } from "./wx-user/entities/wxUser.entity";
 
 @Module({
   imports: [
@@ -24,7 +26,7 @@ import { WechatModule } from "./wechat/wechat.module";
       password: 'xzy20000219',
       database: 'login_test',
       synchronize: true,
-      entities: [User, Post, Advice, SmsVerifyCode],
+      entities: [User, Post, Advice, SmsVerifyCode, WxUser],
       logging: true,
       poolSize: 10,
       connectorPackage: 'mysql',
@@ -38,6 +40,7 @@ import { WechatModule } from "./wechat/wechat.module";
       envFilePath: '.env'
     }),
     WechatModule,
+    WxUserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

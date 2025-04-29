@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Post } from "@nestjs/common";
 import { WechatTokenService } from "./wechat-token.service";
 
 @Controller('auth')
@@ -11,5 +11,10 @@ export class WechatController {
     return {
       token: await this.tokenService.getAccessToken()
     };
+  }
+
+  @Post('wechat-session')
+  async getWechatSession() {
+
   }
 }

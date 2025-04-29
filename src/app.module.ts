@@ -11,6 +11,8 @@ import { Advice } from './advice/entities/advice.entity';
 import { SmsVerifyCodeModule } from './sms-verify-code/sms-verify-code.module';
 import { SmsVerifyCode } from "./sms-verify-code/entities/sms-verify-code.entity";
 import { EmailModule } from './email/email.module';
+import { ConfigModule } from "@nestjs/config";
+import { WechatModule } from "./wechat/wechat.module";
 
 @Module({
   imports: [
@@ -26,15 +28,16 @@ import { EmailModule } from './email/email.module';
       logging: true,
       poolSize: 10,
       connectorPackage: 'mysql',
-      // extra: {
-      //   authPlugin: 'sha256_password',
-      // },
     }),
     UserModule,
     PostModule,
     AdviceModule,
     SmsVerifyCodeModule,
     EmailModule,
+    ConfigModule.forRoot({
+      envFilePath: '.env'
+    }),
+    WechatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

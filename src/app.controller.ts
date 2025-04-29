@@ -1,17 +1,15 @@
 import { Controller, ExecutionContext, Get } from "@nestjs/common";
 import { AppService } from "./app.service";
 import { Request } from "express";
-import { WechatTokenService } from "./wechat/wechat-token.service";
 
 @Controller()
 export class AppController {
-  constructor(private readonly tokenService: WechatTokenService) {
+  constructor(private readonly appService: AppService) {
   }
 
-  // @Get("/wechat-token")
-  // async getWechatToken() {
-  //   return {
-  //     token: await this.tokenService.getAccessToken()
-  //   };
-  // }
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+
 }

@@ -10,24 +10,18 @@ import { WechatConfig } from './wechat.interface';
 @Injectable()
 export class WechatTokenService {
   private readonly logger = new Logger(WechatTokenService.name);
-  private config: WechatConfig;
+  // private config: WechatConfig;
 
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private httpService: HttpService,
+    @Inject('WECHAT_CONFIG') private wechatConfig: WechatConfig,
   ) {}
-
-  setConfig(config: WechatConfig) {
-    this.config = {
-      tokenCacheKey: 'wechat_access_token',
-      ...config,
-    };
-  }
 
   async getAccessToken(): Promise<string> {
     // 尝试从缓存获取
     const cachedToken = await this.cacheManager.get<string>(
-      this.config.tokenCacheKey,
+      this.wechatConfig.tokenCacheKey || 'wechat_access_token',
     );
 
     if (cachedToken) {
@@ -41,8 +35,8 @@ export class WechatTokenService {
         this.httpService.get(url, {
           params: {
             grant_type: 'client_credential',
-            appid: this.config.appId,
-            secret: this.config.appSecret,
+            appid: this.wechatConfig.appId,
+            secret: this.wechatConfig.appSecret,
           },
         }),
       );
@@ -54,7 +48,7 @@ export class WechatTokenService {
       // 缓存 Token（提前 5 分钟过期）
       const expiresIn = response.data.expires_in || 7200;
       await this.cacheManager.set(
-        this.config.tokenCacheKey,
+        this.wechatConfig.tokenCacheKey,
         response.data.access_token,
         (expiresIn - 300) * 1000, // 转换为毫秒
       );

@@ -4,6 +4,7 @@ import { HttpModule } from '@nestjs/axios';
 import { CacheModule } from '@nestjs/cache-manager'; // 新增
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { WechatTokenService } from './wechat-token.service';
+import { WechatController } from "./wechat.controller";
 
 @Global() // 确保全局可用
 @Module({
@@ -13,7 +14,7 @@ import { WechatTokenService } from './wechat-token.service';
 
     HttpModule.registerAsync({
       useFactory: () => ({
-        timeout: 5000,
+        timeout: 50000,
         maxRedirects: 2,
       }),
     }),
@@ -35,6 +36,7 @@ import { WechatTokenService } from './wechat-token.service';
       inject: [ConfigService],
     },
   ],
+  controllers: [WechatController],
   exports: [WechatTokenService],
 })
 export class WechatModule {}
